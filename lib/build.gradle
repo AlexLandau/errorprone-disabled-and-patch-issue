@@ -34,9 +34,10 @@ tasks.named('test') {
     useJUnitPlatform()
 }
 
-// tasks.named("compileJava").configure {
-//     options.args += [
-//         "-XepPatchChecks:MissingOverride",
-//         "-XepPatchLocation:${file("src").absolutePath}"
-//     ]
-// }
+tasks.named("compileJava").configure {
+    options.errorprone.errorproneArgs.addAll([
+        "-Xep:MissingOverride:OFF",
+        "-XepPatchChecks:MissingOverride",
+        "-XepPatchLocation:${file("src").absolutePath}"
+    ])
+}

@@ -7,4 +7,9 @@ public class Library {
     public boolean someLibraryMethod() {
         return true;
     }
+
+    // Missing @Override
+    public String toString() {
+        return "Library";
+    }
 }
