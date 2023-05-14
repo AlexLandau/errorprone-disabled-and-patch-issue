@@ -4,7 +4,7 @@ Public repro of an Error Prone bug introduced in 2.19.0
 When a check is both disabled and passed to the -XepPatchChecks argument, a stacktrace like the following occurs:
 
 ```
-/home/alandau/code/gradle-disabled-and-patch-issue/lib/src/main/java/com/github/alexlandau/repro/Library.java:12: error: An unhandled exception was thrown by the Error Prone static analysis plugin.
+/home/alandau/code/gradle-disabled-and-patch-issue/lib/src/main/java/com/github/alexlandau/repro/Library.java:5: error: An unhandled exception was thrown by the Error Prone static analysis plugin.
     public String toString() {
                   ^
      Please report this at https://github.com/google/error-prone/issues/new and include the following:
@@ -83,7 +83,6 @@ When a check is both disabled and passed to the -XepPatchChecks argument, a stac
         at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
         at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
         at java.base/java.lang.Thread.run(Thread.java:833)
-1 error
 ```
 
 This is not a common situation, but it can come up in some contexts related to automated tooling (e.g. an automated tool runs compilation with -XepPatchChecks against a repo in which Gradle build configuration disables the check).
